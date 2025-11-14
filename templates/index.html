@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Machine Failure Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='img/machine.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #ffc107;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px black;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #084298;
+        }
+
+        a {
+            color: #ffc107;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #28d62c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glass-card">
+        <h1>Machine Failure Prediction</h1>
+        <form method="POST" action="/predict">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="footfall" class="form-label">Footfall</label>
+                    <input type="text" class="form-control" name="footfall" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="tempMode" class="form-label">TempMode</label>
+                    <input type="text" class="form-control" name="tempMode" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="AQ" class="form-label">AQ</label>
+                    <input type="text" class="form-control" name="AQ" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="USS" class="form-label">USS</label>
+                    <input type="text" class="form-control" name="USS" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="CS" class="form-label">CS</label>
+                    <input type="text" class="form-control" name="CS" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="VOC" class="form-label">VOC</label>
+                    <input type="text" class="form-control" name="VOC" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="RP" class="form-label">RP</label>
+                    <input type="text" class="form-control" name="RP" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="IP" class="form-label">IP</label>
+                    <input type="text" class="form-control" name="IP" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="Temperature" class="form-label">Temperature</label>
+                    <input type="text" class="form-control" name="Temperature" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="model_choice" class="form-label">Select Model</label>
+                    <select class="form-select" name="model_choice" required>
+                        <option value="random_forest">Random Forest</option>
+                        <option value="logistic_regression">Logistic Regression</option>
+                        <option value="svm">SVM</option>
+                        <option value="decision_tree">Decision Tree</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </div>
+        </form>
+
+        {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+        {% endif %}
+
+        <a href="{{ url_for('view') }}">Go to Viewpage</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
