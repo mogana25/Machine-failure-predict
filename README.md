@@ -62,12 +62,3 @@ To build a machine learning model that can:
 
 ---
 
-##  Future Improvements
-- Use more advanced models like XGBoost
-- Hyperparameter tuning
-- Deploy the model using Flask or Streamlit
-- Real-time failure prediction
-
----
-
-## 📁 Project Structure
